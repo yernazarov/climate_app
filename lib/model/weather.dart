@@ -18,6 +18,14 @@ class Weather {
     return weatherData;
   }
 
+  Future<dynamic> getCityWeatherData(cityName) async {
+    Uri url = Uri.https('api.openweathermap.org', '/data/2.5/weather',
+        {'q': cityName, 'appid': apiKey, 'units': 'metric'});
+    Networker networker = Networker(url);
+    var weatherData = await networker.getData();
+    return weatherData;
+  }
+
   String getWeatherIcon(int condition) {
     if (condition < 300) {
       return '🌩';
